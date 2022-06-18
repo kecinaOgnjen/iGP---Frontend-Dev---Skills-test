@@ -15,6 +15,10 @@ function RegistrationForm(props) {
     const [emailError, setEmailError] = useState("");
     const [isValidEmail, setIsValidEmail] = useState(false);
 
+    const [usernameValue, setUsernameValue] = useState("");
+    const [usernameError, setUsernameError] = useState("");
+    const [isValidUsername, setIsValidUsername] = useState(false);
+
     const [nextStepCheck, setNextStepCheck] = useState(true);
     const [changeForm, setChangeForm] = useState(false);
 
@@ -87,6 +91,28 @@ function RegistrationForm(props) {
         }
     }
 
+    const validateUsername = () => {
+        if ((usernameValue.length + 1) === 0) {
+            setUsernameError("You must enter an username!");
+            setNextStepCheck(false);
+            setIsValidUsername(false);
+        } else {
+            if ((usernameValue.length + 1) < fieldsData.fields[2].validators[0].parameters.targetLength) {
+                setUsernameError("Username must have at least 4 characters!");
+                setNextStepCheck(false);
+                setIsValidUsername(false);
+            } else if ((usernameValue.length + 1) > fieldsData.fields[2].validators[1].parameters.targetLength) {
+                setUsernameError("Username can have max 20 characters!");
+                setNextStepCheck(false);
+                setIsValidUsername(false);
+            } else {
+                setUsernameError("");
+                setNextStepCheck(true);
+                setIsValidUsername(true);
+            }
+        }
+    }
+
     return (
         <div className={"registration-form-container"}>
             <div>
@@ -155,6 +181,23 @@ function RegistrationForm(props) {
                                 className={emailError !== "" ? "email-error" : "email"}
                             />
                             <p className={"error"}>{emailError}</p>
+                        </div>
+                        <div className={"username-container"}>
+                            <legend>
+                                <label htmlFor="username">{fieldsData.fields[2].name}</label>
+                            </legend>
+                            <input
+                                type="text"
+                                id={"username"}
+                                placeholder={"Insert your username"}
+                                value={usernameValue}
+                                onChange={(e) => {
+                                    setUsernameValue(e.target.value);
+                                    validateUsername();
+                                }}
+                                className={usernameError !== "" ? "username-error" : "username"}
+                            />
+                            <p className={"error"}>{usernameError}</p>
                         </div>
                     </>
                 }
