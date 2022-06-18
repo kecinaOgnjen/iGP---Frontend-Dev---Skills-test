@@ -24,19 +24,19 @@
     margin-bottom: 0.5rem;
 }
 
-/*Style for the first name and the last name inputs*/
-.first-name-container, .last-name-container {
+/*Style for the first name, last name, email inputs*/
+.first-name-container, .last-name-container, .email-container {
     margin-bottom: 2rem;
 }
 
-.first-name-container label, .last-name-container label {
+.first-name-container label, .last-name-container label, .email-container label {
     background: linear-gradient(90deg, rgba(0, 39, 255, 1) 34%, rgba(0, 1, 255, 1) 48%, rgba(201, 10, 88, 1) 87%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 1.1rem;
 }
 
-.first-name, .last-name {
+.first-name, .last-name, .email {
     border: 1px solid transparent;
     border-image: linear-gradient(90deg, rgba(255, 0, 0, 1) 28%, rgba(0, 164, 255, 1) 48%, rgba(189, 10, 201, 1) 87%);
     border-image-slice: 1;
@@ -47,7 +47,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.first-name-container input::placeholder, .last-name-container input::placeholder {
+.first-name-container input::placeholder, .last-name-container input::placeholder, .email input::placeholder {
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
 }
@@ -56,7 +56,7 @@
     color: red;
 }
 
-.first-name-error, .last-name-error {
+.first-name-error, .last-name-error, .email-error {
     border: 1px solid red;
     outline: none;
     padding: 15px 15px;
@@ -86,7 +86,7 @@
     transition: 0.3s ease;
 }
 
-.next-step-button-container button:disabled{
+.next-step-button-container button:disabled {
     background-color: #beb8b8;
     cursor: not-allowed;
 }
