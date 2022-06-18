@@ -19,6 +19,10 @@ function RegistrationForm(props) {
     const [usernameError, setUsernameError] = useState("");
     const [isValidUsername, setIsValidUsername] = useState(false);
 
+    const [passwordValue, setPasswordValue] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [isValidPassword, setIsValidPassword] = useState(false);
+
     const [nextStepCheck, setNextStepCheck] = useState(true);
     const [changeForm, setChangeForm] = useState(false);
 
@@ -92,6 +96,7 @@ function RegistrationForm(props) {
     }
 
     const validateUsername = () => {
+        const regex = /^[a-z0-9\-\_]+$/;
         if ((usernameValue.length + 1) === 0) {
             setUsernameError("You must enter an username!");
             setNextStepCheck(false);
@@ -105,10 +110,37 @@ function RegistrationForm(props) {
                 setUsernameError("Username can have max 20 characters!");
                 setNextStepCheck(false);
                 setIsValidUsername(false);
+            }else if(!regex.test(usernameValue)){
+                setUsernameError("Insert characters from a-z and numbers from 0-9 only!");
+                setNextStepCheck(false);
+                setIsValidUsername(false);
             } else {
                 setUsernameError("");
                 setNextStepCheck(true);
                 setIsValidUsername(true);
+            }
+        }
+    }
+
+    const validatePassword = () => {
+        const regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        if ((passwordValue.length + 1) === 0) {
+            setPasswordError("You must enter an password!");
+            setNextStepCheck(false);
+            setIsValidPassword(false);
+        } else {
+            if ((passwordValue.length + 1) < fieldsData.fields[8].validators[0].parameters.targetLength) {
+                setPasswordError("Password must have at least 6 characters!");
+                setNextStepCheck(false);
+                setIsValidPassword(false);
+            } else if (!regex.test(passwordValue)) {
+                setPasswordError("Insert stronger password!");
+                setNextStepCheck(false);
+                setIsValidPassword(false);
+            } else {
+                setPasswordError("");
+                setNextStepCheck(true);
+                setIsValidPassword(true);
             }
         }
     }
@@ -198,6 +230,23 @@ function RegistrationForm(props) {
                                 className={usernameError !== "" ? "username-error" : "username"}
                             />
                             <p className={"error"}>{usernameError}</p>
+                        </div>
+                        <div className={"password-container"}>
+                            <legend>
+                                <label htmlFor="password">{fieldsData.fields[8].name}</label>
+                            </legend>
+                            <input
+                                type="password"
+                                id={"password"}
+                                placeholder={"Insert your password"}
+                                value={passwordValue}
+                                onChange={(e) => {
+                                    setPasswordValue(e.target.value);
+                                    validatePassword();
+                                }}
+                                className={passwordValue !== "" ? "password-error" : "password"}
+                            />
+                            <p className={"error"}>{passwordError}</p>
                         </div>
                     </>
                 }
