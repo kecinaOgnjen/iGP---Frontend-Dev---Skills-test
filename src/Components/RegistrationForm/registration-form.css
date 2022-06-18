@@ -1,15 +1,52 @@
 /*Registration form style*/
-.registration-form-container{
+.registration-form-container {
     width: 40%;
     display: flex;
     justify-content: center;
     border: 1px solid white;
-    background-color: rgba(255, 255, 255, 0.94);
+    background-color: rgba(255, 255, 255, 0.96);
     border-radius: 7px;
 }
 
-.registration-form-container h1{
-    background: linear-gradient(90deg, rgba(255,0,0,1) 18%, rgba(0,255,8,1) 48%, rgba(10,14,201,1) 87%);
+.registration-form-container h1 {
+    background: linear-gradient(90deg, rgba(255, 0, 0, 1) 18%, rgba(0, 255, 8, 1) 48%, rgba(10, 14, 201, 1) 87%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin: 2.5rem 0;
+}
+
+.registration-form-container > div:first-of-type {
+    margin-bottom: 3rem;
+}
+
+.registration-form-container legend {
+    margin-bottom: 0.5rem;
+}
+
+/*Style for the first name and the last name inputs*/
+.first-name-container, .last-name-container {
+    margin-bottom: 2rem;
+}
+
+.first-name-container label, .last-name-container label {
+    background: linear-gradient(90deg, rgba(0, 39, 255, 1) 34%, rgba(0, 1, 255, 1) 48%, rgba(201, 10, 88, 1) 87%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.1rem;
+}
+
+.first-name-container input, .last-name-container input {
+    border: 1px solid transparent;
+    border-image: linear-gradient(90deg, rgba(255, 0, 0, 1) 28%, rgba(0, 164, 255, 1) 48%, rgba(189, 10, 201, 1) 87%);
+    border-image-slice: 1;
+    outline: none;
+    padding: 15px 15px;
+    font-size: 1rem;
+    color: #0000d8;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.first-name-container input::placeholder, .last-name-container input::placeholder {
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
