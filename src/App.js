@@ -1,8 +1,9 @@
-import RegistrationForm from "./Components/RegistrationForm";
+import RegistrationForm from "./Components/RegistrationForm/RegistrationForm";
+import './app.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <RegistrationForm/>
     </div>
   );
