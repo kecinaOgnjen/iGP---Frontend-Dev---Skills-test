@@ -17,6 +17,7 @@
 
 .registration-form-container > div:first-of-type {
     margin-bottom: 3rem;
+    text-align: center;
 }
 
 .registration-form-container legend {
@@ -49,4 +50,25 @@
 .first-name-container input::placeholder, .last-name-container input::placeholder {
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+}
+/*Style for next step button*/
+.next-step-button-container button{
+    padding: 15px 60px;
+    text-transform: uppercase;
+    background: rgb(255,72,0);
+    background: linear-gradient(90deg, rgba(255,72,0,1) 4%, rgba(0,198,255,1) 48%, rgba(201,10,190,1) 92%);
+    color: white;
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+.next-step-button-container button:hover{
+    background: rgb(0,255,244);
+    background: linear-gradient(90deg, rgba(0,255,244,1) 0%, rgba(0,255,235,1) 2%, rgba(201,10,190,1) 68%);
+    transition: 1s ease-in-out;
 }
