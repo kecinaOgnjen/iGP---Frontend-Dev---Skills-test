@@ -36,7 +36,7 @@
     font-size: 1.1rem;
 }
 
-.first-name-container input, .last-name-container input {
+.first-name, .last-name {
     border: 1px solid transparent;
     border-image: linear-gradient(90deg, rgba(255, 0, 0, 1) 28%, rgba(0, 164, 255, 1) 48%, rgba(189, 10, 201, 1) 87%);
     border-image-slice: 1;
@@ -51,12 +51,25 @@
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
 }
+
+.error {
+    color: red;
+}
+
+.first-name-error, .last-name-error {
+    border: 1px solid red;
+    outline: none;
+    padding: 15px 15px;
+    font-size: 1rem;
+    color: #0000d8;
+    font-family: 'Montserrat', sans-serif;
+}
+
 /*Style for next step button*/
-.next-step-button-container button{
+.next-step-button-container button {
     padding: 15px 60px;
     text-transform: uppercase;
-    background: rgb(255,72,0);
-    background: linear-gradient(90deg, rgba(255,72,0,1) 4%, rgba(0,198,255,1) 48%, rgba(201,10,190,1) 92%);
+    background-color: #13b7c5;
     color: white;
     font-weight: 900;
     font-family: 'Montserrat', sans-serif;
@@ -67,8 +80,13 @@
     cursor: pointer;
 
 }
-.next-step-button-container button:hover{
-    background: rgb(0,255,244);
-    background: linear-gradient(90deg, rgba(0,255,244,1) 0%, rgba(0,255,235,1) 2%, rgba(201,10,190,1) 68%);
-    transition: 1s ease-in-out;
+
+.next-step-button-container button:hover {
+    background-color: #2381ba;
+    transition: 0.3s ease;
+}
+
+.next-step-button-container button:disabled{
+    background-color: #beb8b8;
+    cursor: not-allowed;
 }
