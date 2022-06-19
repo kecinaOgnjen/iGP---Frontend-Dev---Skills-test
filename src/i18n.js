@@ -30,7 +30,7 @@ const resources = {
             "Password Confirmation": "Password Confirmation",
             "Insert your password again": "Insert your password again",
             "Password doesn't match!": "Password doesn't match!",
-            "You agree with our terms and conditions?": "You agree with our terms and conditions?",
+            "You agree with our terms and conditions?": "Do you agree with our terms and conditions?",
             "Please read our terms and conditions!": "Please read our terms and conditions!",
             "Send": "Send",
             "Success!": "Success!"
@@ -64,7 +64,7 @@ const resources = {
             "Password Confirmation": "Potvrdite lozinku",
             "Insert your password again": "Pokušajte ponovo!",
             "Password doesn't match!": "Lozinke se ne poklapaju!",
-            "You agree with our terms and conditions?": "Slažete li se sa uslovima korišćenja",
+            "Do you agree with our terms and conditions?": "Slažete li se sa uslovima korišćenja",
             "Please read our terms and conditions!": "Molim Vas pročitajte uslove korišćenja!",
             "Send": "Pošalji",
             "Success!": "Uspješno poslati podaci!"
