@@ -198,9 +198,23 @@ function RegistrationForm() {
         if (!isUKLanguageVisible) {
             i18n.changeLanguage('mne');
             setIsUKLanguageVisible(true);
+            setFirstNameError("");
+            setLastNameError("");
+            setEmailError("");
+            setUsernameError("");
+            setPasswordError("");
+            setPasswordConfirmationError("");
+            setTermsAndConditionsError("");
         } else {
             i18n.changeLanguage('en');
             setIsUKLanguageVisible(false);
+            setFirstNameError("");
+            setLastNameError("");
+            setEmailError("");
+            setUsernameError("");
+            setPasswordError("");
+            setPasswordConfirmationError("");
+            setTermsAndConditionsError("");
         }
     }
 

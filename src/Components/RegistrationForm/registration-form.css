@@ -124,7 +124,7 @@ html, body, #root, .app {
     background: linear-gradient(90deg, rgba(255, 0, 0, 1) 18%, rgba(0, 255, 8, 1) 48%, rgba(10, 14, 201, 1) 87%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 50px;
+    font-size: 35px;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -152,6 +152,7 @@ html, body, #root, .app {
         width: 65%;
     }
 
+
     /*Style for dialog*/
     .MuiPaper-root {
         height: 35%;
@@ -160,6 +161,14 @@ html, body, #root, .app {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .MuiPaper-root h2 {
+        background: linear-gradient(90deg, rgba(255, 0, 0, 1) 18%, rgba(0, 255, 8, 1) 48%, rgba(10, 14, 201, 1) 87%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 30px;
+        font-family: 'Montserrat', sans-serif;
     }
 }
 
