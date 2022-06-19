@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './registration-form.css';
 import fieldsData from '../../sampleData.json';
 
@@ -22,6 +22,10 @@ function RegistrationForm(props) {
     const [passwordValue, setPasswordValue] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [isValidPassword, setIsValidPassword] = useState(false);
+
+    const [passwordConfirmationValue, setPasswordConfirmationValue] = useState("");
+    const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
+    const [isValidPasswordConfirmation, setIsValidPasswordConfirmation] = useState(false);
 
     const [nextStepCheck, setNextStepCheck] = useState(true);
     const [changeForm, setChangeForm] = useState(false);
@@ -145,6 +149,29 @@ function RegistrationForm(props) {
         }
     }
 
+    const validatePasswordConfirmation =  () => {
+        if ((passwordConfirmationValue.length) === 0) {
+            setPasswordConfirmationError("You must enter password again!");
+            setNextStepCheck(false);
+            setIsValidPasswordConfirmation(false);
+        } else {
+            if (passwordConfirmationValue !== passwordValue) {
+                setPasswordConfirmationError("Password doesn't match!");
+                setNextStepCheck(false);
+                setIsValidPasswordConfirmation(false);
+            } else {
+                setPasswordConfirmationError("");
+                setNextStepCheck(true);
+                setIsValidPasswordConfirmation(true);
+            }
+        }
+    };
+
+    useEffect(() => {
+        validatePasswordConfirmation();
+    }, [passwordConfirmationValue, passwordValue])
+
+
     return (
         <div className={"registration-form-container"}>
             <div>
@@ -247,6 +274,22 @@ function RegistrationForm(props) {
                                 className={passwordValue !== "" ? "password-error" : "password"}
                             />
                             <p className={"error"}>{passwordError}</p>
+                        </div>
+                        <div className={"password-confirmation-container"}>
+                            <legend>
+                                <label htmlFor="password-confirmation">{fieldsData.fields[9].name}</label>
+                            </legend>
+                            <input
+                                type="password"
+                                id={"password-confirmation"}
+                                placeholder={"Insert your password again"}
+                                value={passwordConfirmationValue}
+                                onChange={(e) => {
+                                  setPasswordConfirmationValue(e.target.value)
+                                }}
+                                className={passwordConfirmationValue !== "" ? "password-confirmation-error" : "password-confirmation"}
+                            />
+                            <p className={"error"}>{passwordConfirmationError}</p>
                         </div>
                     </>
                 }
