@@ -27,150 +27,157 @@ function RegistrationForm(props) {
     const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
     const [isValidPasswordConfirmation, setIsValidPasswordConfirmation] = useState(false);
 
-    const [nextStepCheck, setNextStepCheck] = useState(true);
+    const [isTermsChecked, setIsTermsChecked] = useState(false);
+    const [termsAndConditionsError, setTermsAndConditionsError] = useState("");
+
     const [changeForm, setChangeForm] = useState(false);
 
     const validateFirstName = () => {
-        if ((firstNameValue.length + 1) === 0) {
-            setFirstNameError("You must enter a first name!");
-            setNextStepCheck(false);
+        if ((firstNameValue.length) === 0) {
+            setFirstNameError("Required!");
             setIsValidFirstName(false);
         } else {
-            if ((firstNameValue.length + 1) < fieldsData.fields[3].validators[0].parameters.targetLength) {
+            if ((firstNameValue.length) < fieldsData.fields[3].validators[0].parameters.targetLength) {
                 setFirstNameError("First name must have at least 2 characters!");
-                setNextStepCheck(false);
                 setIsValidFirstName(false);
-            } else if ((firstNameValue.length + 1) > fieldsData.fields[3].validators[1].parameters.targetLength) {
+            } else if ((firstNameValue.length) > fieldsData.fields[3].validators[1].parameters.targetLength) {
                 setFirstNameError("First name can have max 25 characters!");
-                setNextStepCheck(false);
                 setIsValidFirstName(false);
             } else {
                 setFirstNameError("");
-                setNextStepCheck(true);
                 setIsValidFirstName(true);
             }
         }
-    }
+    };
 
     const validateLastName = () => {
-        if ((lastNameValue.length + 1) === 0) {
-            setLastNameError("You must enter a last name!");
-            setNextStepCheck(false);
+        if ((lastNameValue.length) === 0) {
+            setLastNameError("Required!");
             setIsValidLastName(false);
         } else {
-            if ((lastNameValue.length + 1) < fieldsData.fields[4].validators[0].parameters.targetLength) {
+            if ((lastNameValue.length) < fieldsData.fields[4].validators[0].parameters.targetLength) {
                 setLastNameError("Last name must have at least 2 characters!");
-                setNextStepCheck(false);
                 setIsValidLastName(false);
-            } else if ((lastNameValue.length + 1) > fieldsData.fields[4].validators[1].parameters.targetLength) {
+            } else if ((lastNameValue.length) > fieldsData.fields[4].validators[1].parameters.targetLength) {
                 setLastNameError("Last name can have max 25 characters!");
-                setNextStepCheck(false);
                 setIsValidLastName(false);
             } else {
                 setLastNameError("");
-                setNextStepCheck(true);
                 setIsValidLastName(true);
             }
         }
-    }
-
-    const changeFormInputs = () => {
-        if (isValidFirstName && isValidLastName) {
-            setChangeForm(true);
-        }
-    }
+    };
 
     const validateEmail = () => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if ((emailValue.length + 1) === 0) {
-            setEmailError("You must enter an email!");
-            setNextStepCheck(false);
+        if ((emailValue.length) === 0) {
+            setEmailError("Required!");
             setIsValidEmail(false);
         } else {
             if (regex.test(emailValue)) {
                 setEmailError("");
-                setNextStepCheck(true);
                 setIsValidEmail(true);
-            }else {
+            } else {
                 setEmailError("Wrong type of email!");
-                setNextStepCheck(false);
                 setIsValidEmail(false);
             }
         }
-    }
+    };
 
     const validateUsername = () => {
         const regex = /^[a-z0-9\-\_]+$/;
-        if ((usernameValue.length + 1) === 0) {
-            setUsernameError("You must enter an username!");
-            setNextStepCheck(false);
+        if ((usernameValue.length) === 0) {
+            setUsernameError("Required!");
             setIsValidUsername(false);
         } else {
-            if ((usernameValue.length + 1) < fieldsData.fields[2].validators[0].parameters.targetLength) {
+            if ((usernameValue.length) < fieldsData.fields[2].validators[0].parameters.targetLength) {
                 setUsernameError("Username must have at least 4 characters!");
-                setNextStepCheck(false);
                 setIsValidUsername(false);
-            } else if ((usernameValue.length + 1) > fieldsData.fields[2].validators[1].parameters.targetLength) {
+            } else if ((usernameValue.length) > fieldsData.fields[2].validators[1].parameters.targetLength) {
                 setUsernameError("Username can have max 20 characters!");
-                setNextStepCheck(false);
                 setIsValidUsername(false);
-            }else if(!regex.test(usernameValue)){
+            } else if (!regex.test(usernameValue)) {
                 setUsernameError("Insert characters from a-z and numbers from 0-9 only!");
-                setNextStepCheck(false);
                 setIsValidUsername(false);
             } else {
                 setUsernameError("");
-                setNextStepCheck(true);
                 setIsValidUsername(true);
             }
         }
-    }
+    };
 
     const validatePassword = () => {
         const regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-        if ((passwordValue.length + 1) === 0) {
-            setPasswordError("You must enter an password!");
-            setNextStepCheck(false);
+        if ((passwordValue.length) === 0) {
+            setPasswordError("Required!");
             setIsValidPassword(false);
         } else {
-            if ((passwordValue.length + 1) < fieldsData.fields[8].validators[0].parameters.targetLength) {
+            if ((passwordValue.length) < fieldsData.fields[8].validators[0].parameters.targetLength) {
                 setPasswordError("Password must have at least 6 characters!");
-                setNextStepCheck(false);
                 setIsValidPassword(false);
             } else if (!regex.test(passwordValue)) {
                 setPasswordError("Insert stronger password!");
-                setNextStepCheck(false);
                 setIsValidPassword(false);
             } else {
                 setPasswordError("");
-                setNextStepCheck(true);
                 setIsValidPassword(true);
             }
         }
-    }
+    };
 
-    const validatePasswordConfirmation =  () => {
+    const validatePasswordConfirmation = () => {
         if ((passwordConfirmationValue.length) === 0) {
-            setPasswordConfirmationError("You must enter password again!");
-            setNextStepCheck(false);
+            setPasswordConfirmationError("Required!");
             setIsValidPasswordConfirmation(false);
         } else {
             if (passwordConfirmationValue !== passwordValue) {
                 setPasswordConfirmationError("Password doesn't match!");
-                setNextStepCheck(false);
                 setIsValidPasswordConfirmation(false);
             } else {
                 setPasswordConfirmationError("");
-                setNextStepCheck(true);
                 setIsValidPasswordConfirmation(true);
             }
         }
     };
 
+    const validateTermsAndConditions = () => {
+        if (!isTermsChecked) {
+            setTermsAndConditionsError("Please read our terms and conditions!");
+        } else {
+            setTermsAndConditionsError("");
+        }
+    }
+
+    const changeNextStepForm = () => {
+        if (isValidFirstName && isValidLastName) {
+            setChangeForm(true);
+        }
+    };
+
+    useEffect(() => {
+        validateFirstName();
+    }, [firstNameValue]);
+
+    useEffect(() => {
+        validateLastName();
+    }, [lastNameValue]);
+
+    useEffect(() => {
+        validateEmail();
+    }, [emailValue]);
+
+    useEffect(() => {
+        validateUsername();
+    }, [usernameValue]);
+
     useEffect(() => {
         validatePasswordConfirmation();
-    }, [passwordConfirmationValue, passwordValue])
+        validatePassword();
+    }, [passwordConfirmationValue, passwordValue]);
 
+    useEffect(() => {
+        validateTermsAndConditions();
+    }, [isTermsChecked]);
 
     return (
         <div className={"registration-form-container"}>
@@ -214,9 +221,9 @@ function RegistrationForm(props) {
                         </div>
                         <div className={"next-step-button-container"}>
                             <button
-                                disabled={!nextStepCheck}
+                                disabled={!isValidFirstName || !isValidLastName}
                                 onClick={() => {
-                                    changeFormInputs();
+                                    changeNextStepForm();
                                 }}
                             >
                                 Next Step
@@ -271,7 +278,7 @@ function RegistrationForm(props) {
                                     setPasswordValue(e.target.value);
                                     validatePassword();
                                 }}
-                                className={passwordValue !== "" ? "password-error" : "password"}
+                                className={passwordError !== "" ? "password-error" : "password"}
                             />
                             <p className={"error"}>{passwordError}</p>
                         </div>
@@ -285,11 +292,34 @@ function RegistrationForm(props) {
                                 placeholder={"Insert your password again"}
                                 value={passwordConfirmationValue}
                                 onChange={(e) => {
-                                  setPasswordConfirmationValue(e.target.value)
+                                    setPasswordConfirmationValue(e.target.value)
                                 }}
-                                className={passwordConfirmationValue !== "" ? "password-confirmation-error" : "password-confirmation"}
+                                className={passwordConfirmationError !== "" ? "password-confirmation-error" : "password-confirmation"}
                             />
                             <p className={"error"}>{passwordConfirmationError}</p>
+                        </div>
+                        <div className={"terms-and-conditions-container"}>
+                            <span>
+                                <label htmlFor="terms-and-conditions">You agree with our terms and conditions?</label>
+                            </span>
+                            <input
+                                type="checkbox"
+                                id={"terms-and-conditions"}
+                                onClick={(e) => {
+                                    setIsTermsChecked(!isTermsChecked)
+                                }}
+                            />
+                            <p className={"error"}>{termsAndConditionsError}</p>
+                        </div>
+                        <div className={"send-button-container"}>
+                            <button
+                                disabled={(isTermsChecked === false || (!isValidUsername || !isValidEmail || !isValidPassword || !isValidPasswordConfirmation || !isValidPasswordConfirmation))}
+                                // onClick={() => {
+                                //     changeFormInputs();
+                                // }}
+                            >
+                                Send
+                            </button>
                         </div>
                     </>
                 }
