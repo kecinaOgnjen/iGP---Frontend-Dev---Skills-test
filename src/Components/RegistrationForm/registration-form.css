@@ -52,6 +52,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+/*Style for errors*/
 .error {
     color: red;
 }
@@ -65,7 +66,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/*Style for next step and send button*/
+.terms-and-conditions-error {
+    color: red;
+}
+
+/*Style for next step button and send button*/
 .next-step-button-container button, .send-button-container button {
     padding: 15px 60px;
     text-transform: uppercase;
@@ -91,11 +96,8 @@
     cursor: not-allowed;
 }
 
-/*Style for terms and condition input*/
-.terms-and-conditions-container span{
+/*Style for terms and condition span*/
+.terms-and-conditions-container span {
     margin-right: 10px;
-}
-.terms-and-conditions-error{
-    color: red;
 }
 

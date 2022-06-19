@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './registration-form.css';
 import fieldsData from '../../sampleData.json';
 
-function RegistrationForm(props) {
+function RegistrationForm() {
     const [firstNameValue, setFirstNameValue] = useState("");
     const [firstNameError, setFirstNameError] = useState("");
     const [isValidFirstName, setIsValidFirstName] = useState(false);
