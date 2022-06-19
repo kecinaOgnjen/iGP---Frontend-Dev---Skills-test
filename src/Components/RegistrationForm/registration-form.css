@@ -101,3 +101,19 @@
     margin-right: 10px;
 }
 
+/*Style for dialog*/
+.MuiPaper-root {
+    height: 30%;
+    width: 30%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.MuiPaper-root h2{
+    background: linear-gradient(90deg, rgba(255, 0, 0, 1) 18%, rgba(0, 255, 8, 1) 48%, rgba(10, 14, 201, 1) 87%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+}

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './registration-form.css';
 import fieldsData from '../../sampleData.json';
+import {Dialog} from "@mui/material";
 
 function RegistrationForm() {
     const [firstNameValue, setFirstNameValue] = useState("");
@@ -31,6 +32,7 @@ function RegistrationForm() {
     const [termsAndConditionsError, setTermsAndConditionsError] = useState("");
 
     const [changeForm, setChangeForm] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     const validateFirstName = () => {
         if ((firstNameValue.length) === 0) {
@@ -154,6 +156,22 @@ function RegistrationForm() {
         }
     };
 
+    const sendData = () => {
+        setIsOpenModal(true);
+    }
+
+    const handleClose = () => {
+        setIsOpenModal(false)
+        setFirstNameValue("");
+        setLastNameValue("");
+        setEmailValue("");
+        setUsernameValue("");
+        setPasswordValue("");
+        setPasswordConfirmationValue("");
+        setIsTermsChecked(false);
+        setChangeForm(false);
+    }
+
     useEffect(() => {
         validateFirstName();
     }, [firstNameValue]);
@@ -180,151 +198,159 @@ function RegistrationForm() {
     }, [isTermsChecked]);
 
     return (
-        <div className={"registration-form-container"}>
-            <div>
-                <h1>Registration Form</h1>
-                {!changeForm ?
-                    <>
-                        <div className={"first-name-container"}>
-                            <legend>
-                                <label htmlFor="first-name">{fieldsData.fields[3].name}</label>
-                            </legend>
-                            <input
-                                type="text"
-                                id={"first-name"}
-                                placeholder={"Insert your first name"}
-                                value={firstNameValue}
-                                onChange={(e) => {
-                                    setFirstNameValue(e.target.value);
-                                    validateFirstName();
-                                }}
-                                className={firstNameError !== "" ? "first-name-error" : "first-name"}
-                            />
-                            <p className={"error"}>{firstNameError}</p>
-                        </div>
-                        <div className={"last-name-container"}>
-                            <legend>
-                                <label htmlFor="last-name">Last Name</label>
-                            </legend>
-                            <input
-                                type="text"
-                                id={"last-name"}
-                                placeholder={"Insert your last name"}
-                                value={lastNameValue}
-                                onChange={(e) => {
-                                    setLastNameValue(e.target.value);
-                                    validateLastName();
-                                }}
-                                className={lastNameError !== "" ? "last-name-error" : "last-name"}
-                            />
-                            <p className={"error"}>{lastNameError}</p>
-                        </div>
-                        <div className={"next-step-button-container"}>
-                            <button
-                                disabled={!isValidFirstName || !isValidLastName}
-                                onClick={() => {
-                                    changeNextStepForm();
-                                }}
-                            >
-                                Next Step
-                            </button>
-                        </div>
-                    </>
-                    : <>
-                        <div className={"email-container"}>
-                            <legend>
-                                <label htmlFor="email">{fieldsData.fields[5].name}</label>
-                            </legend>
-                            <input
-                                type="text"
-                                id={"email"}
-                                placeholder={"Insert your email"}
-                                value={emailValue}
-                                onChange={(e) => {
-                                    setEmailValue(e.target.value);
-                                    validateEmail();
-                                }}
-                                className={emailError !== "" ? "email-error" : "email"}
-                            />
-                            <p className={"error"}>{emailError}</p>
-                        </div>
-                        <div className={"username-container"}>
-                            <legend>
-                                <label htmlFor="username">{fieldsData.fields[2].name}</label>
-                            </legend>
-                            <input
-                                type="text"
-                                id={"username"}
-                                placeholder={"Insert your username"}
-                                value={usernameValue}
-                                onChange={(e) => {
-                                    setUsernameValue(e.target.value);
-                                    validateUsername();
-                                }}
-                                className={usernameError !== "" ? "username-error" : "username"}
-                            />
-                            <p className={"error"}>{usernameError}</p>
-                        </div>
-                        <div className={"password-container"}>
-                            <legend>
-                                <label htmlFor="password">{fieldsData.fields[8].name}</label>
-                            </legend>
-                            <input
-                                type="password"
-                                id={"password"}
-                                placeholder={"Insert your password"}
-                                value={passwordValue}
-                                onChange={(e) => {
-                                    setPasswordValue(e.target.value);
-                                    validatePassword();
-                                }}
-                                className={passwordError !== "" ? "password-error" : "password"}
-                            />
-                            <p className={"error"}>{passwordError}</p>
-                        </div>
-                        <div className={"password-confirmation-container"}>
-                            <legend>
-                                <label htmlFor="password-confirmation">{fieldsData.fields[9].name}</label>
-                            </legend>
-                            <input
-                                type="password"
-                                id={"password-confirmation"}
-                                placeholder={"Insert your password again"}
-                                value={passwordConfirmationValue}
-                                onChange={(e) => {
-                                    setPasswordConfirmationValue(e.target.value)
-                                }}
-                                className={passwordConfirmationError !== "" ? "password-confirmation-error" : "password-confirmation"}
-                            />
-                            <p className={"error"}>{passwordConfirmationError}</p>
-                        </div>
-                        <div className={"terms-and-conditions-container"}>
+        <>
+            <Dialog
+                open={isOpenModal}
+                onClose={() => handleClose()}
+            >
+                <h2>Success!</h2>
+            </Dialog>
+            <div className={"registration-form-container"}>
+                <div>
+                    <h1>Registration Form</h1>
+                    {!changeForm ?
+                        <>
+                            <div className={"first-name-container"}>
+                                <legend>
+                                    <label htmlFor="first-name">{fieldsData.fields[3].name}</label>
+                                </legend>
+                                <input
+                                    type="text"
+                                    id={"first-name"}
+                                    placeholder={"Insert your first name"}
+                                    value={firstNameValue}
+                                    onChange={(e) => {
+                                        setFirstNameValue(e.target.value);
+                                        validateFirstName();
+                                    }}
+                                    className={firstNameError !== "" ? "first-name-error" : "first-name"}
+                                />
+                                <p className={"error"}>{firstNameError}</p>
+                            </div>
+                            <div className={"last-name-container"}>
+                                <legend>
+                                    <label htmlFor="last-name">Last Name</label>
+                                </legend>
+                                <input
+                                    type="text"
+                                    id={"last-name"}
+                                    placeholder={"Insert your last name"}
+                                    value={lastNameValue}
+                                    onChange={(e) => {
+                                        setLastNameValue(e.target.value);
+                                        validateLastName();
+                                    }}
+                                    className={lastNameError !== "" ? "last-name-error" : "last-name"}
+                                />
+                                <p className={"error"}>{lastNameError}</p>
+                            </div>
+                            <div className={"next-step-button-container"}>
+                                <button
+                                    disabled={!isValidFirstName || !isValidLastName}
+                                    onClick={() => {
+                                        changeNextStepForm();
+                                    }}
+                                >
+                                    Next Step
+                                </button>
+                            </div>
+                        </>
+                        : <>
+                            <div className={"email-container"}>
+                                <legend>
+                                    <label htmlFor="email">{fieldsData.fields[5].name}</label>
+                                </legend>
+                                <input
+                                    type="text"
+                                    id={"email"}
+                                    placeholder={"Insert your email"}
+                                    value={emailValue}
+                                    onChange={(e) => {
+                                        setEmailValue(e.target.value);
+                                        validateEmail();
+                                    }}
+                                    className={emailError !== "" ? "email-error" : "email"}
+                                />
+                                <p className={"error"}>{emailError}</p>
+                            </div>
+                            <div className={"username-container"}>
+                                <legend>
+                                    <label htmlFor="username">{fieldsData.fields[2].name}</label>
+                                </legend>
+                                <input
+                                    type="text"
+                                    id={"username"}
+                                    placeholder={"Insert your username"}
+                                    value={usernameValue}
+                                    onChange={(e) => {
+                                        setUsernameValue(e.target.value);
+                                        validateUsername();
+                                    }}
+                                    className={usernameError !== "" ? "username-error" : "username"}
+                                />
+                                <p className={"error"}>{usernameError}</p>
+                            </div>
+                            <div className={"password-container"}>
+                                <legend>
+                                    <label htmlFor="password">{fieldsData.fields[8].name}</label>
+                                </legend>
+                                <input
+                                    type="password"
+                                    id={"password"}
+                                    placeholder={"Insert your password"}
+                                    value={passwordValue}
+                                    onChange={(e) => {
+                                        setPasswordValue(e.target.value);
+                                        validatePassword();
+                                    }}
+                                    className={passwordError !== "" ? "password-error" : "password"}
+                                />
+                                <p className={"error"}>{passwordError}</p>
+                            </div>
+                            <div className={"password-confirmation-container"}>
+                                <legend>
+                                    <label htmlFor="password-confirmation">{fieldsData.fields[9].name}</label>
+                                </legend>
+                                <input
+                                    type="password"
+                                    id={"password-confirmation"}
+                                    placeholder={"Insert your password again"}
+                                    value={passwordConfirmationValue}
+                                    onChange={(e) => {
+                                        setPasswordConfirmationValue(e.target.value)
+                                    }}
+                                    className={passwordConfirmationError !== "" ? "password-confirmation-error" : "password-confirmation"}
+                                />
+                                <p className={"error"}>{passwordConfirmationError}</p>
+                            </div>
+                            <div className={"terms-and-conditions-container"}>
                             <span>
                                 <label htmlFor="terms-and-conditions">You agree with our terms and conditions?</label>
                             </span>
-                            <input
-                                type="checkbox"
-                                id={"terms-and-conditions"}
-                                onClick={(e) => {
-                                    setIsTermsChecked(!isTermsChecked)
-                                }}
-                            />
-                            <p className={"error"}>{termsAndConditionsError}</p>
-                        </div>
-                        <div className={"send-button-container"}>
-                            <button
-                                disabled={(isTermsChecked === false || (!isValidUsername || !isValidEmail || !isValidPassword || !isValidPasswordConfirmation || !isValidPasswordConfirmation))}
-                                // onClick={() => {
-                                //     changeFormInputs();
-                                // }}
-                            >
-                                Send
-                            </button>
-                        </div>
-                    </>
-                }
+                                <input
+                                    type="checkbox"
+                                    id={"terms-and-conditions"}
+                                    onClick={(e) => {
+                                        setIsTermsChecked(!isTermsChecked)
+                                    }}
+                                />
+                                <p className={"error"}>{termsAndConditionsError}</p>
+                            </div>
+                            <div className={"send-button-container"}>
+                                <button
+                                    disabled={(isTermsChecked === false || (!isValidUsername || !isValidEmail || !isValidPassword || !isValidPasswordConfirmation || !isValidPasswordConfirmation))}
+                                    onClick={() => {
+                                        sendData();
+                                    }}
+                                >
+                                    Send
+                                </button>
+                            </div>
+                        </>
+                    }
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
