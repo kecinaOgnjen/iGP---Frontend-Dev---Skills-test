@@ -30,7 +30,7 @@ const resources = {
             "Password Confirmation": "Password Confirmation",
             "Insert your password again": "Insert your password again",
             "Password doesn't match!": "Password doesn't match!",
-            "You agree with our terms and conditions?": "Do you agree with our terms and conditions?",
+            "Do you agree with our terms and conditions?": "Do you agree with our terms and conditions?",
             "Please read our terms and conditions!": "Please read our terms and conditions!",
             "Send": "Send",
             "Success!": "Success!"

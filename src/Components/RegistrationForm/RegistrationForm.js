@@ -384,7 +384,7 @@ function RegistrationForm() {
                             <div className={"terms-and-conditions-container"}>
                             <span>
                                 <label
-                                    htmlFor="terms-and-conditions">{t('You agree with our terms and conditions?')}</label>
+                                    htmlFor="terms-and-conditions">{t('Do you agree with our terms and conditions?')}</label>
                             </span>
                                 <input
                                     type="checkbox"
